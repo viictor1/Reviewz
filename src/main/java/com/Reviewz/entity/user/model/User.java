@@ -1,4 +1,4 @@
-package com.Reviewz.entity.user;
+package com.Reviewz.entity.user.model;
 
 public class User {
 
