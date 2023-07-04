@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Reviewz.useCase.User.CreateUserUseCase;
 import com.Reviewz.useCase.User.CreateUserUseCase.Input;
 
+import jakarta.validation.constraints.NotNull;
+
 @RestController
 public class CreateUserController {
 
@@ -25,8 +27,11 @@ public class CreateUserController {
 	}
 	
 	private record Request(
+			@NotNull(message = "Name cannot be null")
 			String name,
+			@NotNull(message = "Email cannot be null")
 			String email,
+			@NotNull(message = "Password cannot be null")
 			String password
 		) {}
 }
