@@ -27,4 +27,15 @@ public class UserDatabaseGateway implements UserGateway{
 				user.getPassword()));
 	}
 
+	@Override
+	public Optional<User> findByEmail(String email) {
+		return userRepository
+				.findByEmail(email)
+				.map((schema) -> new User(
+						schema.getId(),
+						schema.getName(),
+						schema.getEmail(),
+						schema.getPassword()));
+	}
+
 }
