@@ -1,5 +1,7 @@
 package com.Reviewz.infrastructure.user.gateway;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Component;
 
 import com.Reviewz.entity.user.gateway.UserGateway;
@@ -23,6 +25,17 @@ public class UserDatabaseGateway implements UserGateway{
 				user.getName(),
 				user.getEmail(),
 				user.getPassword()));
+	}
+
+	@Override
+	public Optional<User> findByEmail(String email) {
+		return userRepository
+				.findByEmail(email)
+				.map((schema) -> new User(
+						schema.getId(),
+						schema.getName(),
+						schema.getEmail(),
+						schema.getPassword()));
 	}
 
 }
