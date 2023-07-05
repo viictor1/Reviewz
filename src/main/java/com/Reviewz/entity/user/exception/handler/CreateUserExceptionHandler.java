@@ -1,4 +1,4 @@
-package com.Reviewz.entity.user.exception;
+package com.Reviewz.entity.user.exception.handler;
 
 import java.time.LocalDateTime;
 
