@@ -1,5 +1,7 @@
 package com.Reviewz.entity.user.model;
 
+import com.Reviewz.entity.user.exception.ValidationError;
+
 public class User {
 
 	private Long id;
@@ -15,18 +17,25 @@ public class User {
 		this.password = password;
 	}
 
-	public User(String name, String email, String password) {
+	public User(String name, String email, String password) throws Exception {
 		super();
-		this.name = name;
-		this.email = email;
-		this.password = password;
+		this.setName(name);
+		this.setEmail(email);
+		this.setPassword(password);
+	}
+	
+	public User() {
+		super();
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name) throws Exception {
+		if(name == null || name.isEmpty()) {
+			throw new ValidationError("The name cannot be blank or empty");
+		}
 		this.name = name;
 	}
 
@@ -34,7 +43,10 @@ public class User {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(String email) throws Exception {
+		if(email == null || email.isEmpty()) {
+			throw new ValidationError("The email cannot be blank or empty");
+		}
 		this.email = email;
 	}
 
@@ -42,7 +54,10 @@ public class User {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(String password) throws Exception {
+		if(password == null || password.isEmpty()) {
+			throw new ValidationError("The password cannot be blank or empty");
+		}
 		this.password = password;
 	}
 

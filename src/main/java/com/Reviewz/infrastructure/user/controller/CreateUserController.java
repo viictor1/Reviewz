@@ -20,7 +20,7 @@ public class CreateUserController {
 	
 	@PostMapping("/user")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createUser(@RequestBody Request request) {
+	public void createUser(@RequestBody Request request) throws Exception {
 		createUserUseCase.execute(new Input(request.name, request.email, request.password));
 	}
 	

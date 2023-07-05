@@ -14,8 +14,11 @@ public class CreateUserUseCase {
 		this.userGateway = userGateway;
 	}
 	
-	public void execute(Input input) {
-		var user = new User(input.name(), input.email(), input.password());
+	public void execute(Input input) throws Exception {
+		User user = new User();
+		user.setName(input.name);
+		user.setEmail(input.email);
+		user.setPassword(input.password);
 		userGateway.create(user);
 	}
 	
