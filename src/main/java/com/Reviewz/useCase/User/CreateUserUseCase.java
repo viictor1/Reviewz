@@ -11,15 +11,16 @@ import com.Reviewz.entity.user.model.User;
 public class CreateUserUseCase {
 
 	private UserGateway userGateway;
-	private SearchUserByEmailUseCase searchUserByEmailUseCase;
 	
-	public CreateUserUseCase(UserGateway userGateway, SearchUserByEmailUseCase searchUserByEmailUseCase) {
+	public CreateUserUseCase(UserGateway userGateway) {
 		this.userGateway = userGateway;
-		this.searchUserByEmailUseCase = searchUserByEmailUseCase;
 	}
 	
 	public void execute(Input input) throws Exception {
 		User user = new User();
+		if(checkIfEmailUsed(input.email)) {
+			throw new Exception("Email ja utilizado");
+		}
 		user.setName(input.name);
 		user.setEmail(input.email);
 		user.setPassword(input.password);
