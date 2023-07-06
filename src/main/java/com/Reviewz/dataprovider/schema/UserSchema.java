@@ -1,4 +1,4 @@
-package com.Reviewz.infrastructure.config.db.schema;
+package com.Reviewz.dataprovider.schema;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.Reviewz.entity.user.exception.handler;
+package com.Reviewz.core.user.exception.handler;
 
 import java.time.LocalDateTime;
 
@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.Reviewz.entity.exception.ErrorResponse;
-import com.Reviewz.entity.user.exception.EmailAlreadyExistsException;
+import com.Reviewz.core.user.exception.EmailAlreadyExistsException;
+import com.Reviewz.core.user.exception.ErrorResponse;
 
 @ControllerAdvice
 public class EmailAlreadyExistsHandler {

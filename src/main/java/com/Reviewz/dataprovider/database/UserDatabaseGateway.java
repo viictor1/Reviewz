@@ -1,13 +1,12 @@
-package com.Reviewz.infrastructure.user.gateway;
+package com.Reviewz.dataprovider.database;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.Reviewz.entity.user.gateway.UserGateway;
-import com.Reviewz.entity.user.model.User;
-import com.Reviewz.infrastructure.config.db.UserRepository;
-import com.Reviewz.infrastructure.config.db.schema.UserSchema;
+import com.Reviewz.core.user.contract.UserGateway;
+import com.Reviewz.core.user.model.User;
+import com.Reviewz.dataprovider.schema.UserSchema;
 
 @Component
 public class UserDatabaseGateway implements UserGateway{

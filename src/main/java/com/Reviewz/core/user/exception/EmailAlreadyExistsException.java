@@ -1,4 +1,4 @@
-package com.Reviewz.entity.user.exception;
+package com.Reviewz.core.user.exception;
 
 public class EmailAlreadyExistsException extends Exception{
 
