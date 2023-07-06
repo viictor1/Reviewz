@@ -1,12 +1,12 @@
-package com.Reviewz.useCase.User;
+package com.Reviewz.core.user.usecase;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.Reviewz.entity.user.exception.EmailAlreadyExistsException;
-import com.Reviewz.entity.user.gateway.UserGateway;
-import com.Reviewz.entity.user.model.User;
+import com.Reviewz.core.user.contract.UserGateway;
+import com.Reviewz.core.user.exception.EmailAlreadyExistsException;
+import com.Reviewz.core.user.model.User;
 
 @Service
 public class CreateUserUseCase {

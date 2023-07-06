@@ -1,8 +1,8 @@
-package com.Reviewz.entity.user.gateway;
+package com.Reviewz.core.user.contract;
 
 import java.util.Optional;
 
-import com.Reviewz.entity.user.model.User;
+import com.Reviewz.core.user.model.User;
 
 public interface UserGateway {
 	void create(User user);

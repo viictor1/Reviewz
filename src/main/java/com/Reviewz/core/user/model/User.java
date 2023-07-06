@@ -1,6 +1,6 @@
-package com.Reviewz.entity.user.model;
+package com.Reviewz.core.user.model;
 
-import com.Reviewz.entity.exception.ValidationError;
+import com.Reviewz.core.user.exception.ValidationError;
 
 public class User {
 

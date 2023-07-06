@@ -1,11 +1,11 @@
-package com.Reviewz.infrastructure.config.db;
+package com.Reviewz.dataprovider.database;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.Reviewz.infrastructure.config.db.schema.UserSchema;
+import com.Reviewz.dataprovider.schema.UserSchema;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserSchema, Long>{
