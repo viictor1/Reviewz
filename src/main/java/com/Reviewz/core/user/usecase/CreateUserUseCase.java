@@ -2,6 +2,8 @@ package com.Reviewz.core.user.usecase;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.Reviewz.core.user.contract.UserGateway;
@@ -13,8 +15,11 @@ public class CreateUserUseCase {
 
 	private UserGateway userGateway;
 	
-	public CreateUserUseCase(UserGateway userGateway) {
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	public CreateUserUseCase(UserGateway userGateway, BCryptPasswordEncoder passwordEncoder) {
 		this.userGateway = userGateway;
+		this.passwordEncoder = passwordEncoder;
 	}
 	
 	public void execute(Input input) throws Exception {
@@ -33,7 +38,7 @@ public class CreateUserUseCase {
 		
 		user.setName(input.name);
 		user.setEmail(input.email);
-		user.setPassword(input.password);
+		user.setPassword(passwordEncoder.encode(input.password));
 		
 		return user;
 	}
