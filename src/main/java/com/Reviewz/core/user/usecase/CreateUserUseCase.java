@@ -29,7 +29,7 @@ public class CreateUserUseCase {
 	}
 	
 	public boolean checkIfEmailUsed(String email) {
-		Optional<User> optionalUser = userGateway.findByEmail(email);
+		Optional<User> optionalUser = userGateway.findOptionalByEmail(email);
 		
 		if(optionalUser.isEmpty()) {
 			return false;

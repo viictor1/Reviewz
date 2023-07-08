@@ -27,9 +27,9 @@ public class UserDatabaseGateway implements UserGateway{
 	}
 
 	@Override
-	public Optional<User> findByEmail(String email) {
+	public Optional<User> findOptionalByEmail(String email) {
 		return userRepository
-				.findByEmail(email)
+				.findOptionalByEmail(email)
 				.map((schema) -> new User(
 						schema.getId(),
 						schema.getName(),
