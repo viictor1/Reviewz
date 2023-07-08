@@ -1,8 +1,10 @@
 package com.Reviewz.dataprovider.schema;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
@@ -16,6 +18,8 @@ import jakarta.persistence.Table;
 @Table(name = "users")
 public class UserSchema implements UserDetails{
 
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -28,6 +32,9 @@ public class UserSchema implements UserDetails{
 	
 	@Column(nullable = false)
 	private String password;
+	
+	@Column(nullable = false)
+	private UserRole role;
 
 	public UserSchema(Long id, String name, String email, String password) {
 		super();
@@ -59,8 +66,13 @@ public class UserSchema implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		if (this.role == UserRole.ADMIN){
+			return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"),
+					new SimpleGrantedAuthority("ROLE_USER"));
+		}
+		else {
+			return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+		}
 	}
 
 	@Override
