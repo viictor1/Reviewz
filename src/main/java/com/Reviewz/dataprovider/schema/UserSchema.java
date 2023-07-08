@@ -63,6 +63,10 @@ public class UserSchema implements UserDetails{
 	public String getPassword() {
 		return password;
 	}
+	
+	public UserRole getRole() {
+		return role;
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

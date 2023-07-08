@@ -2,7 +2,7 @@ package com.Reviewz.core.user.usecase;
 
 import java.util.Optional;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.Reviewz.core.user.contract.UserGateway;
@@ -15,9 +15,9 @@ public class CreateUserUseCase {
 
 	private UserGateway userGateway;
 	
-	private BCryptPasswordEncoder passwordEncoder;
+	private PasswordEncoder passwordEncoder;
 	
-	public CreateUserUseCase(UserGateway userGateway, BCryptPasswordEncoder passwordEncoder) {
+	public CreateUserUseCase(UserGateway userGateway, PasswordEncoder passwordEncoder) {
 		this.userGateway = userGateway;
 		this.passwordEncoder = passwordEncoder;
 	}

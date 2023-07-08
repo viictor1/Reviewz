@@ -34,7 +34,8 @@ public class UserDatabaseGateway implements UserGateway{
 						schema.getId(),
 						schema.getName(),
 						schema.getEmail(),
-						schema.getPassword()));
+						schema.getPassword(),
+						schema.getRole()));
 	}
 
 }

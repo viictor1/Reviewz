@@ -15,6 +15,17 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+	
+    public static final String[] PUBLIC_PATHS = {
+    		"/api/auth/**",
+            "/v3/api-docs.yaml",
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-ui.html",
+            "/auth/**",
+            "/h2-console/**",
+            "swagger-ui/**"
+            };
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -23,6 +34,7 @@ public class SecurityConfig {
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(req ->{
                 	req.requestMatchers(HttpMethod.GET, "/user").hasRole("ADMIN"); 
+                	req.requestMatchers(PUBLIC_PATHS).permitAll();
                 	req.anyRequest().authenticated();
                 })
 				.build();
@@ -38,4 +50,5 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+	
 }
