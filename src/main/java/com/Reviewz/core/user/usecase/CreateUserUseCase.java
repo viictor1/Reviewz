@@ -18,14 +18,24 @@ public class CreateUserUseCase {
 	}
 	
 	public void execute(Input input) throws Exception {
-		User user = new User();
+		
 		if(checkIfEmailUsed(input.email)) {
 			throw new EmailAlreadyExistsException("Email ja utilizado");
 		}
+		
+		User user = setUserFromInput(input);
+		
+		userGateway.create(user);
+	}
+	
+	public User setUserFromInput(Input input) throws Exception {
+		User user = new User();
+		
 		user.setName(input.name);
 		user.setEmail(input.email);
 		user.setPassword(input.password);
-		userGateway.create(user);
+		
+		return user;
 	}
 	
 	public boolean checkIfEmailUsed(String email) {
