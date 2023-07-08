@@ -4,12 +4,12 @@ import com.Reviewz.core.user.exception.ValidationError;
 
 public class User {
 
-	private Long id;
+	private String id;
 	private String name;
 	private String email;
 	private String password;
 	
-	public User(Long id, String name, String email, String password) {
+	public User(String id, String name, String email, String password) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -61,7 +61,7 @@ public class User {
 		this.password = password;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 	

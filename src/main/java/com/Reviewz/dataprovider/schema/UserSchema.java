@@ -21,8 +21,8 @@ public class UserSchema implements UserDetails{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private String id;
 	
 	@Column(nullable = false)
 	private String name;
@@ -33,10 +33,10 @@ public class UserSchema implements UserDetails{
 	@Column(nullable = false)
 	private String password;
 	
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	private UserRole role;
 
-	public UserSchema(Long id, String name, String email, String password) {
+	public UserSchema(String id, String name, String email, String password) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -48,7 +48,7 @@ public class UserSchema implements UserDetails{
 		super();
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 

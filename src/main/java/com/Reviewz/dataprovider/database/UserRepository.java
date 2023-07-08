@@ -11,7 +11,8 @@ import org.springframework.stereotype.Repository;
 import com.Reviewz.dataprovider.schema.UserSchema;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserSchema, Long>{
+public interface UserRepository extends JpaRepository<UserSchema, String>{
+	
 	@Query(value = "SELECT u FROM UserSchema u WHERE u.email = :email")
 	Optional<UserSchema> findOptionalByEmail(@Param("email") String email);
 	
