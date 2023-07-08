@@ -1,6 +1,7 @@
 package com.Reviewz.core.user.model;
 
 import com.Reviewz.core.user.exception.ValidationError;
+import com.Reviewz.dataprovider.schema.UserRole;
 
 public class User {
 
@@ -8,13 +9,15 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
+	private UserRole role;
 	
-	public User(String id, String name, String email, String password) {
+	public User(String id, String name, String email, String password, UserRole role) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.setRole(role);
 	}
 
 	public User(String name, String email, String password) throws Exception {
@@ -63,6 +66,14 @@ public class User {
 
 	public String getId() {
 		return id;
+	}
+
+	public UserRole getRole() {
+		return role;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
 	}
 	
 	

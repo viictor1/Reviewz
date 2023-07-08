@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping("/auth")
@@ -25,6 +26,6 @@ public class LoginController {
 		return new Response("parece que deu certo");
 	}
 	
-	private record Input(String email, String password) {};
+	private record Input(@NotBlank String email, @NotBlank String password) {};
 	private record Response(String token) {};
 }

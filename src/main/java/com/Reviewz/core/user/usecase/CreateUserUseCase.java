@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.Reviewz.core.user.contract.UserGateway;
 import com.Reviewz.core.user.exception.EmailAlreadyExistsException;
 import com.Reviewz.core.user.model.User;
+import com.Reviewz.dataprovider.schema.UserRole;
 
 @Service
 public class CreateUserUseCase {
@@ -38,6 +39,7 @@ public class CreateUserUseCase {
 		user.setName(input.name);
 		user.setEmail(input.email);
 		user.setPassword(passwordEncoder.encode(input.password));
+		user.setRole(UserRole.USER);
 		
 		return user;
 	}
