@@ -1,5 +1,8 @@
 package com.Reviewz.entrypoint.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,12 +13,18 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/auth")
 public class LoginController {
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
 	@PostMapping("/login")
 	public Response login(@RequestBody @Valid Input input) {
-		return new Response();
+		var usernamePassword = new UsernamePasswordAuthenticationToken(input.email, input.password);
+		var auth = this.authenticationManager.authenticate(usernamePassword);
+		
+		return new Response("parece que deu certo");
 	}
 	
 	private record Input(String email, String password) {};
-	private record Response() {};
+	private record Response(String token) {};
 }
