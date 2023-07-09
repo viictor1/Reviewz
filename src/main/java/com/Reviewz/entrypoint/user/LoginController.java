@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Reviewz.core.authentication.usecase.TokenService;
+import com.Reviewz.dataprovider.schema.UserSchema;
+
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
@@ -17,13 +20,18 @@ public class LoginController {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private TokenService tokenService;
 
 	@PostMapping("/login")
 	public Response login(@RequestBody @Valid Input input) {
 		var usernamePassword = new UsernamePasswordAuthenticationToken(input.login, input.password);
 		var auth = this.authenticationManager.authenticate(usernamePassword);
 		
-		return new Response("parece que deu certo");
+		var token = tokenService.generateToken((UserSchema) auth.getPrincipal());
+		
+		return new Response(token);
 	}
 	
 	private record Input(@NotBlank String login, @NotBlank String password) {};
