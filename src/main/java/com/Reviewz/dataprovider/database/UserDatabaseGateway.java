@@ -22,19 +22,20 @@ public class UserDatabaseGateway implements UserGateway{
 		userRepository.save(new UserSchema(
 				null, 
 				user.getName(),
-				user.getEmail(),
+				user.getLogin(),
 				user.getPassword()));
 	}
 
 	@Override
-	public Optional<User> findByEmail(String email) {
+	public Optional<User> findOptionalByLogin(String login) {
 		return userRepository
-				.findByEmail(email)
+				.findOptionalByLogin(login)
 				.map((schema) -> new User(
 						schema.getId(),
 						schema.getName(),
-						schema.getEmail(),
-						schema.getPassword()));
+						schema.getLogin(),
+						schema.getPassword(),
+						schema.getRole()));
 	}
 
 }

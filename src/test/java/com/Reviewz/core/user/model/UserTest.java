@@ -26,15 +26,15 @@ public class UserTest {
 	}
 	
 	@Test
-	public void setEmailTest() throws Exception {
-		user.setEmail("test@email.com");
-		assertEquals(user.getEmail(), "test@email.com");
+	public void setLoginTest() throws Exception {
+		user.setLogin("test");
+		assertEquals(user.getLogin(), "test");
 	}
 	
 	@Test
 	public void setEmptyEmailTest() {
 		try {
-			user.setEmail("");
+			user.setLogin("");
 		} catch (Exception e) {
 			assertEquals(e.getClass(), ValidationError.class);
 		}

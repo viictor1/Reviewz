@@ -2,34 +2,50 @@ package com.Reviewz.core.user.usecase;
 
 import java.util.Optional;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.Reviewz.core.user.contract.UserGateway;
-import com.Reviewz.core.user.exception.EmailAlreadyExistsException;
+import com.Reviewz.core.user.exception.LoginAlreadyExistsException;
 import com.Reviewz.core.user.model.User;
+import com.Reviewz.dataprovider.schema.UserRole;
 
 @Service
 public class CreateUserUseCase {
 
 	private UserGateway userGateway;
 	
-	public CreateUserUseCase(UserGateway userGateway) {
+	private PasswordEncoder passwordEncoder;
+	
+	public CreateUserUseCase(UserGateway userGateway, PasswordEncoder passwordEncoder) {
 		this.userGateway = userGateway;
+		this.passwordEncoder = passwordEncoder;
 	}
 	
 	public void execute(Input input) throws Exception {
-		User user = new User();
-		if(checkIfEmailUsed(input.email)) {
-			throw new EmailAlreadyExistsException("Email ja utilizado");
+		
+		if(checkIfLoginUsed(input.email)) {
+			throw new LoginAlreadyExistsException("Login already being used");
 		}
-		user.setName(input.name);
-		user.setEmail(input.email);
-		user.setPassword(input.password);
+		
+		User user = setUserFromInput(input);
+		
 		userGateway.create(user);
 	}
 	
-	public boolean checkIfEmailUsed(String email) {
-		Optional<User> optionalUser = userGateway.findByEmail(email);
+	public User setUserFromInput(Input input) throws Exception {
+		User user = new User();
+		
+		user.setName(input.name);
+		user.setLogin(input.email);
+		user.setPassword(passwordEncoder.encode(input.password));
+		user.setRole(UserRole.USER);
+		
+		return user;
+	}
+	
+	public boolean checkIfLoginUsed(String email) {
+		Optional<User> optionalUser = userGateway.findOptionalByLogin(email);
 		
 		if(optionalUser.isEmpty()) {
 			return false;

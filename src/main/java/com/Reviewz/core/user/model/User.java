@@ -1,26 +1,29 @@
 package com.Reviewz.core.user.model;
 
 import com.Reviewz.core.user.exception.ValidationError;
+import com.Reviewz.dataprovider.schema.UserRole;
 
 public class User {
 
-	private Long id;
+	private String id;
 	private String name;
-	private String email;
+	private String login;
 	private String password;
+	private UserRole role;
 	
-	public User(Long id, String name, String email, String password) {
+	public User(String id, String name, String login, String password, UserRole role) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.email = email;
+		this.login = login;
 		this.password = password;
+		this.setRole(role);
 	}
 
-	public User(String name, String email, String password) throws Exception {
+	public User(String name, String login, String password) throws Exception {
 		super();
 		this.setName(name);
-		this.setEmail(email);
+		this.setLogin(login);
 		this.setPassword(password);
 	}
 	
@@ -39,15 +42,15 @@ public class User {
 		this.name = name;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setEmail(String email) throws Exception {
-		if(email == null || email.isEmpty()) {
+	public void setLogin(String login) throws Exception {
+		if(login == null || login.isEmpty()) {
 			throw new ValidationError("The email cannot be blank or empty");
 		}
-		this.email = email;
+		this.login = login;
 	}
 
 	public String getPassword() {
@@ -61,8 +64,16 @@ public class User {
 		this.password = password;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
+	}
+
+	public UserRole getRole() {
+		return role;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
 	}
 	
 	
