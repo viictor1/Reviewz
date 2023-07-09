@@ -23,12 +23,12 @@ public class RegisterController {
 	@PostMapping("/register")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createUser(@RequestBody Request request) throws Exception {
-		createUserUseCase.execute(new Input(request.name, request.email, request.password));
+		createUserUseCase.execute(new Input(request.name, request.login, request.password));
 	}
 	
 	private record Request(
 			String name,
-			String email,
+			String login,
 			String password
 		) {}
 }

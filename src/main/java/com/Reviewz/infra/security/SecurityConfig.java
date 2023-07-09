@@ -23,8 +23,8 @@ public class SecurityConfig {
             "/swagger-ui/**",
             "/swagger-ui.html",
             "/auth/**",
-            "/h2-console/**",
-            "swagger-ui/**"
+            "/h2-console/",
+            "/h2-console/**"
             };
 
 	@Bean
@@ -37,8 +37,7 @@ public class SecurityConfig {
                 	req.requestMatchers(PUBLIC_PATHS).permitAll();
                 	req.anyRequest().authenticated();
                 })
-				.build();
-				
+				.build();			
 	}
 	
 	@Bean

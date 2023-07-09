@@ -28,7 +28,7 @@ public class UserSchema implements UserDetails{
 	private String name;
 	
 	@Column(nullable = false, unique = true)
-	private String email;
+	private String login;
 	
 	@Column(nullable = false)
 	private String password;
@@ -36,11 +36,11 @@ public class UserSchema implements UserDetails{
 	//@Column(nullable = false)
 	private UserRole role;
 
-	public UserSchema(String id, String name, String email, String password) {
+	public UserSchema(String id, String name, String login, String password) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.email = email;
+		this.login = login;
 		this.password = password;
 	}
 
@@ -56,8 +56,8 @@ public class UserSchema implements UserDetails{
 		return name;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getLogin() {
+		return login;
 	}
 
 	public String getPassword() {
@@ -81,7 +81,7 @@ public class UserSchema implements UserDetails{
 
 	@Override
 	public String getUsername() {
-		return email;
+		return login;
 	}
 
 	@Override

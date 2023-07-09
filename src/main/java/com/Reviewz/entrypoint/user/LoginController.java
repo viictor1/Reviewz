@@ -20,12 +20,12 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public Response login(@RequestBody @Valid Input input) {
-		var usernamePassword = new UsernamePasswordAuthenticationToken(input.email, input.password);
+		var usernamePassword = new UsernamePasswordAuthenticationToken(input.login, input.password);
 		var auth = this.authenticationManager.authenticate(usernamePassword);
 		
 		return new Response("parece que deu certo");
 	}
 	
-	private record Input(@NotBlank String email, @NotBlank String password) {};
+	private record Input(@NotBlank String login, @NotBlank String password) {};
 	private record Response(String token) {};
 }

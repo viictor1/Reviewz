@@ -13,8 +13,8 @@ import com.Reviewz.dataprovider.schema.UserSchema;
 @Repository
 public interface UserRepository extends JpaRepository<UserSchema, String>{
 	
-	@Query(value = "SELECT u FROM UserSchema u WHERE u.email = :email")
-	Optional<UserSchema> findOptionalByEmail(@Param("email") String email);
+	@Query(value = "SELECT u FROM UserSchema u WHERE u.login = :login")
+	Optional<UserSchema> findOptionalByLogin(@Param("login") String login);
 	
-	UserDetails findByEmail(String email);
+	UserDetails findByLogin(String login);
 }
