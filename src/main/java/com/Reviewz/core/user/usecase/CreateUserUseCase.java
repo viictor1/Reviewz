@@ -25,7 +25,7 @@ public class CreateUserUseCase {
 	public void execute(Input input) throws Exception {
 		
 		if(checkIfLoginUsed(input.email)) {
-			throw new LoginAlreadyExistsException("Login alredy being used");
+			throw new LoginAlreadyExistsException("Login already being used");
 		}
 		
 		User user = setUserFromInput(input);
