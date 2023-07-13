@@ -11,3 +11,11 @@
   - Criação de usuário
   - Exceção personalizada caso tente usar um email ja cadastrado.
   - Exceção personalizada caso não informe um campo obrigatório.
+
+### Tecnologias utilizadas
+  - Spring Boot
+  - Maven
+  - PostgreSQL
+  - Flyway
+  - JUnit
+  - Swagger
