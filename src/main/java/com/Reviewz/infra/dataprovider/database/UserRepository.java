@@ -1,4 +1,4 @@
-package com.Reviewz.dataprovider.database;
+package com.Reviewz.infra.dataprovider.database;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
-import com.Reviewz.dataprovider.schema.UserSchema;
+import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserSchema, UUID>{

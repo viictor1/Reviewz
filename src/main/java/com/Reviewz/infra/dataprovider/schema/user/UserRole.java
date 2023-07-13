@@ -1,4 +1,4 @@
-package com.Reviewz.dataprovider.schema;
+package com.Reviewz.infra.dataprovider.schema.user;
 
 public enum UserRole {
 	ADMIN("admin"),

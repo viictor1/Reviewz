@@ -3,7 +3,7 @@ package com.Reviewz.core.user.model;
 import java.util.UUID;
 
 import com.Reviewz.core.user.exception.ValidationError;
-import com.Reviewz.dataprovider.schema.UserRole;
+import com.Reviewz.infra.dataprovider.schema.user.UserRole;
 
 public class User {
 

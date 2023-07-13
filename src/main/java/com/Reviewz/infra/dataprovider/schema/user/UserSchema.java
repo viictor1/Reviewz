@@ -1,4 +1,4 @@
-package com.Reviewz.dataprovider.schema;
+package com.Reviewz.infra.dataprovider.schema.user;
 
 import java.util.Collection;
 import java.util.List;
