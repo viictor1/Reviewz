@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.Reviewz.core.authentication.usecase.TokenService;
-import com.Reviewz.dataprovider.database.UserRepository;
+import com.Reviewz.infra.dataprovider.database.UserRepository;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

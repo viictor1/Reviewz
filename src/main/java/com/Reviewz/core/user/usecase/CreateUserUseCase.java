@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.Reviewz.core.user.contract.UserGateway;
 import com.Reviewz.core.user.exception.LoginAlreadyExistsException;
 import com.Reviewz.core.user.model.User;
-import com.Reviewz.dataprovider.schema.UserRole;
+import com.Reviewz.infra.dataprovider.schema.user.UserRole;
 
 @Service
 public class CreateUserUseCase {

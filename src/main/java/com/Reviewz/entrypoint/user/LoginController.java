@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Reviewz.core.authentication.usecase.TokenService;
-import com.Reviewz.dataprovider.schema.UserSchema;
+import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

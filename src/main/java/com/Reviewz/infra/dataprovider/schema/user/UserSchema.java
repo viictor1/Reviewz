@@ -1,7 +1,8 @@
-package com.Reviewz.dataprovider.schema;
+package com.Reviewz.infra.dataprovider.schema.user;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,15 +15,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
+
 @Table(name = "users")
+@Entity
 public class UserSchema implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
-	private String id;
+	private UUID id;
 	
 	@Column(nullable = false)
 	private String name;
@@ -33,22 +35,23 @@ public class UserSchema implements UserDetails{
 	@Column(nullable = false)
 	private String password;
 	
-	//@Column(nullable = false)
+	@Column(nullable = false)
 	private UserRole role;
 
-	public UserSchema(String id, String name, String login, String password) {
+	public UserSchema(UUID id, String name, String login, String password, UserRole role) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.login = login;
 		this.password = password;
+		this.role = role;
 	}
 
 	public UserSchema() {
 		super();
 	}
 
-	public String getId() {
+	public UUID getId() {
 		return id;
 	}
 
