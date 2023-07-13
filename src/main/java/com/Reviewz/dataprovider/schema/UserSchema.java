@@ -14,8 +14,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
+
 @Table(name = "users")
+@Entity
 public class UserSchema implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
@@ -33,15 +34,16 @@ public class UserSchema implements UserDetails{
 	@Column(nullable = false)
 	private String password;
 	
-	//@Column(nullable = false)
+	@Column(nullable = false)
 	private UserRole role;
 
-	public UserSchema(String id, String name, String login, String password) {
+	public UserSchema(String id, String name, String login, String password, UserRole role) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.login = login;
 		this.password = password;
+		this.role = role;
 	}
 
 	public UserSchema() {

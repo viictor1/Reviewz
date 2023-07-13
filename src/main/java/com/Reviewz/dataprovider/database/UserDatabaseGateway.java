@@ -23,7 +23,8 @@ public class UserDatabaseGateway implements UserGateway{
 				null, 
 				user.getName(),
 				user.getLogin(),
-				user.getPassword()));
+				user.getPassword(),
+				user.getRole()));
 	}
 
 	@Override
