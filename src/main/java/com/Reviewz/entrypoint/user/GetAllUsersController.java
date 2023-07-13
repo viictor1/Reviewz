@@ -11,6 +11,8 @@ import com.Reviewz.core.user.model.User;
 import com.Reviewz.core.user.usecase.GetAllUsersUseCase;
 import com.Reviewz.infra.dataprovider.schema.user.UserRole;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 @RestController
 @RequestMapping("/user")
 public class GetAllUsersController {
@@ -21,6 +23,7 @@ public class GetAllUsersController {
 		this.getAllUsersUseCase = getAllUsersUseCase;
 	}
 	
+	@SecurityRequirement(name = "bearerAuth")
 	@GetMapping
 	public List<Response> getAllUsers() {
 		List<User> userList = getAllUsersUseCase.getAllUsers();

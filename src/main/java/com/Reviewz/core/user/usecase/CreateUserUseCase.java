@@ -39,7 +39,7 @@ public class CreateUserUseCase {
 		user.setName(input.name);
 		user.setLogin(input.email);
 		user.setPassword(passwordEncoder.encode(input.password));
-		user.setRole(UserRole.USER);
+		user.setRole(UserRole.ADMIN);
 		
 		return user;
 	}
