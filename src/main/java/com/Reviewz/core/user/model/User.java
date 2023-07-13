@@ -1,17 +1,19 @@
 package com.Reviewz.core.user.model;
 
+import java.util.UUID;
+
 import com.Reviewz.core.user.exception.ValidationError;
 import com.Reviewz.dataprovider.schema.UserRole;
 
 public class User {
 
-	private String id;
+	private UUID id;
 	private String name;
 	private String login;
 	private String password;
 	private UserRole role;
 	
-	public User(String id, String name, String login, String password, UserRole role) {
+	public User(UUID id, String name, String login, String password, UserRole role) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -64,7 +66,7 @@ public class User {
 		this.password = password;
 	}
 
-	public String getId() {
+	public UUID getId() {
 		return id;
 	}
 
