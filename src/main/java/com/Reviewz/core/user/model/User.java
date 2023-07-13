@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.Reviewz.core.user.exception.ValidationError;
 import com.Reviewz.infra.dataprovider.schema.user.UserRole;
+import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 
 public class User {
 
@@ -31,6 +32,14 @@ public class User {
 	
 	public User() {
 		super();
+	}
+
+	public User(UserSchema user) {
+		this.id = user.getId();
+		this.name = user.getName();
+		this.login = user.getLogin();
+		this.password = user.getPassword();
+		this.role = user.getRole();
 	}
 
 	public String getName() {
