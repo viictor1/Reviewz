@@ -14,9 +14,9 @@ import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 @Service
 public class CreateUserUseCase {
 
-	private UserGateway userGateway;
+	private final UserGateway userGateway;
 	
-	private PasswordEncoder passwordEncoder;
+	private final PasswordEncoder passwordEncoder;
 	
 	public CreateUserUseCase(UserGateway userGateway, PasswordEncoder passwordEncoder) {
 		this.userGateway = userGateway;
@@ -47,12 +47,8 @@ public class CreateUserUseCase {
 	
 	public boolean checkIfLoginUsed(String email) {
 		Optional<UserSchema> optionalUser = userGateway.findOptionalByLogin(email);
-		
-		if(optionalUser.isEmpty()) {
-			return false;
-		}
-		
-		return true;
+
+		return optionalUser.isPresent();
 	}
 	
 	public record Input(String name, String email, String password) { }
