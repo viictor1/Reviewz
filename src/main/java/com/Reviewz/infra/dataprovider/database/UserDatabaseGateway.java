@@ -1,5 +1,7 @@
 package com.Reviewz.infra.dataprovider.database;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
@@ -37,6 +39,18 @@ public class UserDatabaseGateway implements UserGateway{
 						schema.getLogin(),
 						schema.getPassword(),
 						schema.getRole()));
+	}
+
+	@Override
+	public List<User> findAll() {
+		List<UserSchema> userSchemaList = userRepository.findAll();
+		List<User> userList = new ArrayList<User>();
+		
+		for (UserSchema user : userSchemaList) {
+			userList.add(new User(user));
+		}
+		
+		return userList;
 	}
 
 }
