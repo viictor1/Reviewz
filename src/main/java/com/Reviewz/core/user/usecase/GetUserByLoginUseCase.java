@@ -1,12 +1,11 @@
 package com.Reviewz.core.user.usecase;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.Reviewz.core.user.contract.UserGateway;
 import com.Reviewz.core.user.exception.ValidationError;
 import com.Reviewz.core.user.model.User;
+import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 
 import jakarta.transaction.Transactional;
 
@@ -21,12 +20,10 @@ public class GetUserByLoginUseCase {
 	
 	@Transactional
 	public User getUserByLogin(String login) throws ValidationError {
-		Optional<User> optionalUser = userGateway.findOptionalByLogin(login);
-		if(optionalUser.isEmpty()) {
-			throw new ValidationError("User not found");
-		}
-		else {
-			return optionalUser.get();
-		}
+		UserSchema userSchema = userGateway.findOptionalByLogin(login)
+				.orElseThrow(() -> new ValidationError("User not found"));
+		
+		return new User(userSchema);
+
 	}
 }

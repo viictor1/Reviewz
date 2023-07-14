@@ -8,6 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.Reviewz.core.user.model.User;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,6 +47,14 @@ public class UserSchema implements UserDetails{
 		this.login = login;
 		this.password = password;
 		this.role = role;
+	}
+	
+	public UserSchema(User user) {
+		this.id = user.getId();
+		this.name = user.getName();
+		this.login = user.getLogin();
+		this.password = user.getPassword();
+		this.role = user.getRole();
 	}
 
 	public UserSchema() {

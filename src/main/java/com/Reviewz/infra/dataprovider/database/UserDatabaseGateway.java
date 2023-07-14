@@ -1,13 +1,11 @@
 package com.Reviewz.infra.dataprovider.database;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
 import com.Reviewz.core.user.contract.UserGateway;
-import com.Reviewz.core.user.model.User;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 
 @Component
@@ -20,37 +18,23 @@ public class UserDatabaseGateway implements UserGateway{
 	}
 	
 	@Override
-	public void create(User user) {
-		userRepository.save(new UserSchema(
-				null, 
-				user.getName(),
-				user.getLogin(),
-				user.getPassword(),
-				user.getRole()));
+	public void create(UserSchema user) {
+		userRepository.save(user);
 	}
 
 	@Override
-	public Optional<User> findOptionalByLogin(String login) {
-		return userRepository
-				.findOptionalByLogin(login)
-				.map((schema) -> new User(
-						schema.getId(),
-						schema.getName(),
-						schema.getLogin(),
-						schema.getPassword(),
-						schema.getRole()));
+	public Optional<UserSchema> findOptionalByLogin(String login) {
+		return userRepository.findOptionalByLogin(login);
 	}
 
 	@Override
-	public List<User> findAll() {
-		List<UserSchema> userSchemaList = userRepository.findAll();
-		List<User> userList = new ArrayList<User>();
-		
-		for (UserSchema user : userSchemaList) {
-			userList.add(new User(user));
-		}
-		
-		return userList;
+	public List<UserSchema> findAll() {
+		return userRepository.findAll();
+	}
+
+	@Override
+	public void delete(UserSchema userSchema) {
+		userRepository.delete(userSchema);
 	}
 
 }

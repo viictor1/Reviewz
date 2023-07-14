@@ -9,6 +9,7 @@ import com.Reviewz.core.user.contract.UserGateway;
 import com.Reviewz.core.user.exception.LoginAlreadyExistsException;
 import com.Reviewz.core.user.model.User;
 import com.Reviewz.infra.dataprovider.schema.user.UserRole;
+import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 
 @Service
 public class CreateUserUseCase {
@@ -30,7 +31,7 @@ public class CreateUserUseCase {
 		
 		User user = setUserFromInput(input);
 		
-		userGateway.create(user);
+		userGateway.create(new UserSchema(user));
 	}
 	
 	public User setUserFromInput(Input input) throws Exception {
@@ -39,13 +40,13 @@ public class CreateUserUseCase {
 		user.setName(input.name);
 		user.setLogin(input.email);
 		user.setPassword(passwordEncoder.encode(input.password));
-		user.setRole(UserRole.ADMIN);
+		user.setRole(UserRole.USER);
 		
 		return user;
 	}
 	
 	public boolean checkIfLoginUsed(String email) {
-		Optional<User> optionalUser = userGateway.findOptionalByLogin(email);
+		Optional<UserSchema> optionalUser = userGateway.findOptionalByLogin(email);
 		
 		if(optionalUser.isEmpty()) {
 			return false;

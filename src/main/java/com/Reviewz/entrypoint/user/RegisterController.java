@@ -21,7 +21,7 @@ public class RegisterController {
 	}
 	
 	@PostMapping("/register")
-	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void createUser(@RequestBody Request request) throws Exception {
 		createUserUseCase.execute(new Input(request.name, request.login, request.password));
 	}
