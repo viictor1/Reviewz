@@ -3,11 +3,12 @@ package com.Reviewz.core.user.contract;
 import java.util.List;
 import java.util.Optional;
 
-import com.Reviewz.core.user.model.User;
+import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 
 public interface UserGateway {
-	void create(User user);
-	List<User> findAll();
+	void create(UserSchema userSchema);
+	List<UserSchema> findAll();
+	void delete(UserSchema userSchema);
 
-	Optional<User> findOptionalByLogin(String login);
+	Optional<UserSchema> findOptionalByLogin(String login);
 }
