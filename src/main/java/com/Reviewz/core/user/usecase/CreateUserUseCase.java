@@ -50,6 +50,6 @@ public class CreateUserUseCase {
 
 		return optionalUser.isPresent();
 	}
-	
+
 	public record Input(String name, String email, String password) { }
 }

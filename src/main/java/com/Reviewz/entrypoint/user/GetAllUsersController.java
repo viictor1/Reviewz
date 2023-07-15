@@ -26,7 +26,7 @@ public class GetAllUsersController {
 	@SecurityRequirement(name = "bearerAuth")
 	@GetMapping
 	public List<Response> getAllUsers() {
-		List<User> userList = getAllUsersUseCase.getAllUsers();
+		List<User> userList = getAllUsersUseCase.execute();
 		List<Response> responseList = new ArrayList<Response>();
 		
 		for (User user : userList) {
