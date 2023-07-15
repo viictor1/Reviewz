@@ -26,7 +26,7 @@ public class DeleteAccountController {
 	@SecurityRequirement(name = "bearerAuth")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteAccount(@RequestHeader (name="Authorization") String token, Input input) throws ValidationError {
-		deleteAccountUseCase.deleteAccount(token.replace("Bearer ", ""), input.password);
+		deleteAccountUseCase.execute(token.replace("Bearer ", ""), input.password);
 	}
 	
 	private record Input(String password) {}

@@ -26,7 +26,7 @@ public class RegisterController {
 		createUserUseCase.execute(new Input(request.name, request.login, request.password));
 	}
 	
-	private record Request(
+	public record Request(
 			String name,
 			String login,
 			String password

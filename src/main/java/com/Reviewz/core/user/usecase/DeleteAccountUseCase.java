@@ -1,14 +1,11 @@
 package com.Reviewz.core.user.usecase;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import com.Reviewz.core.authentication.usecase.TokenService;
 import com.Reviewz.core.user.contract.UserGateway;
 import com.Reviewz.core.user.exception.ValidationError;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
-
-import jakarta.transaction.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 @Service
 public class DeleteAccountUseCase {
@@ -25,8 +22,7 @@ public class DeleteAccountUseCase {
 		this.passwordEncoder = passwordEncoder;
 	}
 	
-	@Transactional
-	public void deleteAccount(String token, String password) throws ValidationError {
+	public void execute(String token, String password) throws ValidationError {
 		UserSchema user = retrieveUserFromToken(token);
 		
 		if (typedPasswordEqualsActualPassword(password, user.getPassword())) {

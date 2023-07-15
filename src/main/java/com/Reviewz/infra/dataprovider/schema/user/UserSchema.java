@@ -57,6 +57,14 @@ public class UserSchema implements UserDetails{
 		this.role = user.getRole();
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public UserSchema() {
 		super();
 	}
