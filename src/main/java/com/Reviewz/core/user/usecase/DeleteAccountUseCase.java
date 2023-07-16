@@ -22,10 +22,10 @@ public class DeleteAccountUseCase {
 		this.passwordEncoder = passwordEncoder;
 	}
 	
-	public void execute(String token, String password) throws ValidationError {
-		UserSchema user = retrieveUserFromToken(token);
+	public void execute(Input input) throws ValidationError {
+		UserSchema user = retrieveUserFromToken(input.token);
 		
-		if (typedPasswordEqualsActualPassword(password, user.getPassword())) {
+		if (typedPasswordEqualsActualPassword(input.password, user.getPassword())) {
 			userGateway.delete(user);			
 		}
 		else {
@@ -48,4 +48,10 @@ public class DeleteAccountUseCase {
 	private void incorrectPassword() throws ValidationError {
 		throw new ValidationError("Incorrect password");
 	}
+
+	public record Input(
+			String token,
+			String password
+	){}
+
 }

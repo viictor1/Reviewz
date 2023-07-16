@@ -6,6 +6,7 @@ import com.Reviewz.core.user.exception.ValidationError;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UpdateAccountUseCase {
@@ -20,14 +21,16 @@ public class UpdateAccountUseCase {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Transactional
     public void execute(Input input) throws ValidationError {
         UserSchema userSchema = retrieveUserFromToken(input.token.replace("Bearer ", ""));
-
-        if(typedPasswordEqualsActualPassword(input.oldPassword, userSchema.getPassword())){
+        if(typedPasswordEqualsActualPassword(input.oldPassword, userSchema.getPassword())) {
             updateUserWhereInputNotNull(userSchema, input);
+            userGateway.update(userSchema);
         }
-
-        userGateway.update(userSchema);
+        else{
+            throw new ValidationError("Incorrect password");
+        }
     }
 
     private void updateUserWhereInputNotNull(UserSchema userSchema, Input input){

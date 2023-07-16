@@ -3,10 +3,8 @@ package com.Reviewz.entrypoint.user;
 import com.Reviewz.core.user.exception.ValidationError;
 import com.Reviewz.core.user.usecase.UpdateAccountUseCase;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -20,8 +18,10 @@ public class UpdateAccountController {
 
 
     @PutMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @SecurityRequirement(name = "bearerAuth")
-    public void updateAccount(@RequestHeader(name="Authorization") String token, Request request) throws ValidationError {
+    public void updateAccount(@RequestHeader("Authorization") String token, @RequestBody Request request) throws ValidationError {
+
         updateAccountUseCase.execute(new UpdateAccountUseCase.Input(
                 request.name,
                 request.oldPassword,
