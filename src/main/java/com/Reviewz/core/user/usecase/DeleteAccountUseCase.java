@@ -23,7 +23,7 @@ public class DeleteAccountUseCase {
 	}
 	
 	public void execute(Input input) throws ValidationError {
-		UserSchema user = retrieveUserFromToken(input.token);
+		UserSchema user = retrieveUserFromToken(input.token.replace("Bearer ", ""));
 		
 		if (typedPasswordEqualsActualPassword(input.password, user.getPassword())) {
 			userGateway.delete(user);			
