@@ -9,6 +9,6 @@ public interface UserGateway {
 	void create(UserSchema userSchema);
 	List<UserSchema> findAll();
 	void delete(UserSchema userSchema);
-
+	UserSchema update(UserSchema userSchema);
 	Optional<UserSchema> findOptionalByLogin(String login);
 }

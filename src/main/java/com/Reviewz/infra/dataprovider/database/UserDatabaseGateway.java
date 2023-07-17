@@ -11,7 +11,7 @@ import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 @Component
 public class UserDatabaseGateway implements UserGateway{
 
-	private UserRepository userRepository;
+	private final UserRepository userRepository;
 	
 	public UserDatabaseGateway(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -36,5 +36,8 @@ public class UserDatabaseGateway implements UserGateway{
 	public void delete(UserSchema userSchema) {
 		userRepository.delete(userSchema);
 	}
+
+	@Override
+	public UserSchema update(UserSchema userSchema) { return userRepository.save(userSchema); }
 
 }

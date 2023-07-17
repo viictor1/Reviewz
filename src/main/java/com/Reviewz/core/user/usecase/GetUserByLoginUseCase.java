@@ -17,9 +17,8 @@ public class GetUserByLoginUseCase {
 	public GetUserByLoginUseCase(UserGateway userGateway) {
 		this.userGateway = userGateway;
 	}
-	
-	@Transactional
-	public User getUserByLogin(String login) throws ValidationError {
+
+	public User execute(String login) throws ValidationError {
 		UserSchema userSchema = userGateway.findOptionalByLogin(login)
 				.orElseThrow(() -> new ValidationError("User not found"));
 		

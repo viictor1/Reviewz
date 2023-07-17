@@ -25,7 +25,7 @@ public class GetUserByLoginController {
 	@SecurityRequirement(name = "bearerAuth")
 	@GetMapping(value = "/{login}")
 	public Response getUserByLogin(@PathVariable String login) throws ValidationError {
-		User user = getUserByLoginUseCase.getUserByLogin(login);
+		User user = getUserByLoginUseCase.execute(login);
 		return new Response(user.getName(), user.getLogin(), user.getRole());
 	}
 	
