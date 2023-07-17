@@ -1,5 +1,6 @@
 package com.Reviewz.entrypoint.user;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import com.Reviewz.core.user.usecase.CreateUserUseCase.Input;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "User", description = "Endpoints for Managing Users/Account")
 public class RegisterController {
 
 	private CreateUserUseCase createUserUseCase;

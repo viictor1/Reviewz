@@ -1,5 +1,6 @@
 package com.Reviewz.entrypoint.user;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController
 @RequestMapping("/user")
+@Tag(name = "User", description = "Endpoints for Managing Users/Account")
 public class DeleteAccountController {
 
 	private DeleteAccountUseCase deleteAccountUseCase;
@@ -23,7 +25,7 @@ public class DeleteAccountController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteAccount(@RequestHeader (name="Authorization") String token, @RequestBody Request request) throws ValidationError {
 		deleteAccountUseCase.execute(new DeleteAccountUseCase.Input(
-				token.replace("Bearer ", ""),
+				token,
 				request.password)
 			);
 	}

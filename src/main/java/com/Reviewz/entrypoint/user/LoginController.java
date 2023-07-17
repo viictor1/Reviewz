@@ -1,5 +1,10 @@
 package com.Reviewz.entrypoint.user;
 
+import com.Reviewz.core.authentication.usecase.TokenService;
+import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -8,14 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Reviewz.core.authentication.usecase.TokenService;
-import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
-
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "User", description = "Endpoints for Managing Users/Account")
 public class LoginController {
 	
 	@Autowired
