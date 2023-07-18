@@ -4,6 +4,7 @@ import com.Reviewz.core.user.exception.ValidationError;
 import com.Reviewz.core.user.usecase.UpdateAccountUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -48,6 +49,7 @@ public class UpdateAccountController {
         ));
     }
 
+    @Schema(hidden = true, name = "Update Request")
     private record Request(
             String name,
             @NotBlank String oldPassword,
