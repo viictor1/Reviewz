@@ -2,6 +2,7 @@ package com.Reviewz.entrypoint.user;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotBlank;
@@ -43,7 +44,8 @@ public class DeleteAccountController {
 				request.password)
 			);
 	}
-	
+
+	@Schema(hidden = true, name = "Delete Request" )
 	private record Request(@NotBlank String password) {}
 	
 	

@@ -2,6 +2,7 @@ package com.Reviewz.entrypoint.user;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotBlank;
@@ -40,10 +41,12 @@ public class RegisterController {
 	public void createUser(@RequestBody Request request) throws Exception {
 		createUserUseCase.execute(new Input(request.name, request.login, request.password));
 	}
-	
+
+	@Schema(hidden = true, name = "Register Request")
 	public record Request(
 			@NotBlank String name,
 			@NotBlank String login,
 			@NotBlank String password
-		) {}
+		) {
+	}
 }
