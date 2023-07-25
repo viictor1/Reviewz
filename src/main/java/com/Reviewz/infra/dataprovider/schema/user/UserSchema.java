@@ -89,6 +89,18 @@ public class UserSchema implements UserDetails{
 		return role;
 	}
 
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		if (this.role == UserRole.ADMIN){
