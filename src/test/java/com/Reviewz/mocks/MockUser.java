@@ -12,7 +12,7 @@ public class MockUser {
 
     public UserSchema mockEntity(Integer number){
         UserSchema user = new UserSchema();
-        user.setId(UUID.fromString(number.toString()));
+        user.setId(UUID.randomUUID());
         user.setName("Name Test " + number);
         user.setLogin("Login Test " + number);
         user.setPassword("Password Test " + number);
