@@ -16,8 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 class CreateUserUseCaseTest {
@@ -31,7 +30,7 @@ class CreateUserUseCaseTest {
     private UserGateway userGateway;
 
     @Mock
-    private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
     @BeforeEach
     void setUp() {
@@ -51,5 +50,17 @@ class CreateUserUseCaseTest {
         String expectedMessage = "Login already being used";
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
+    }
+    @Test
+    void shouldCreateUser() throws Exception {
+        Optional<UserSchema> user = Optional.of(input.mockEntity());
+
+        when(userGateway.findOptionalByLogin("test")).thenReturn(Optional.empty());
+        when(passwordEncoder.encode("test")).thenReturn("encoded");
+
+        var create = new CreateUserUseCase.Input("test", "test", "test");
+        createUserUseCase.execute(create);
+        assertDoesNotThrow(() -> createUserUseCase.execute(create));
+
     }
 }
