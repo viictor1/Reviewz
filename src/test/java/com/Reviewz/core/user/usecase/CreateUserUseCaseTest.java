@@ -2,7 +2,6 @@ package com.Reviewz.core.user.usecase;
 
 import com.Reviewz.core.user.contract.UserGateway;
 import com.Reviewz.core.user.exception.LoginAlreadyExistsException;
-import com.Reviewz.infra.dataprovider.database.UserRepository;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 import com.Reviewz.mocks.MockUser;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,11 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -53,14 +50,10 @@ class CreateUserUseCaseTest {
     }
     @Test
     void shouldCreateUser() throws Exception {
-        Optional<UserSchema> user = Optional.of(input.mockEntity());
-
         when(userGateway.findOptionalByLogin("test")).thenReturn(Optional.empty());
         when(passwordEncoder.encode("test")).thenReturn("encoded");
 
         var create = new CreateUserUseCase.Input("test", "test", "test");
-        createUserUseCase.execute(create);
         assertDoesNotThrow(() -> createUserUseCase.execute(create));
-
     }
 }
