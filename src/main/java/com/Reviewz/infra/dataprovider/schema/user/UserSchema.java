@@ -2,6 +2,7 @@ package com.Reviewz.infra.dataprovider.schema.user;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -89,6 +90,18 @@ public class UserSchema implements UserDetails{
 		return role;
 	}
 
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		if (this.role == UserRole.ADMIN){
@@ -124,6 +137,26 @@ public class UserSchema implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof UserSchema that)) return false;
+
+		if (!Objects.equals(id, that.id)) return false;
+		if (!Objects.equals(name, that.name)) return false;
+		if (!Objects.equals(login, that.login)) return false;
+		if (!Objects.equals(password, that.password)) return false;
+		return role == that.role;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id != null ? id.hashCode() : 0;
+		result = 31 * result + (name != null ? name.hashCode() : 0);
+		result = 31 * result + (login != null ? login.hashCode() : 0);
+		result = 31 * result + (password != null ? password.hashCode() : 0);
+		result = 31 * result + (role != null ? role.hashCode() : 0);
+		return result;
+	}
 }

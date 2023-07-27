@@ -86,7 +86,8 @@ public class User {
 	public void setRole(UserRole role) {
 		this.role = role;
 	}
-	
-	
-	
+
+    public void setId(UUID uuid) {
+		this.id = uuid;
+    }
 }
