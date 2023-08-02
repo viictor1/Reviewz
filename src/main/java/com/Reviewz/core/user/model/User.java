@@ -59,7 +59,7 @@ public class User {
 
 	public void setLogin(String login) throws Exception {
 		if(login == null || login.isEmpty()) {
-			throw new ValidationError("The email cannot be blank or empty");
+			throw new ValidationError("The login cannot be blank or empty");
 		}
 		this.login = login;
 	}
