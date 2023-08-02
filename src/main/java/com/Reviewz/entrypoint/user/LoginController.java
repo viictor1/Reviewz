@@ -4,6 +4,7 @@ import com.Reviewz.core.authentication.usecase.TokenService;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -43,7 +44,8 @@ public class LoginController {
 		
 		return new Response(token);
 	}
-	
+
+	@Schema(hidden = true, name = "Login Request")
 	private record Input(@NotBlank String login, @NotBlank String password) {};
 	private record Response(String token) {};
 }
