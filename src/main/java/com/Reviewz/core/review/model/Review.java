@@ -1,8 +1,10 @@
 package com.Reviewz.core.review.model;
 
 import com.Reviewz.core.user.exception.ValidationError;
+import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Review {
@@ -14,20 +16,20 @@ public class Review {
     private String review;
     private Date publishedAt;
     private Date reviewedAt;
-    private UUID userId;
+    private UserSchema user;
 
     public Review() {
     }
 
-    public Review(Long id, String title, String genre, int stars, String review, Date publishedAt, Date reviewedAt, UUID userId) {
-        this.id = id;
-        this.title = title;
-        this.genre = genre;
-        this.stars = stars;
-        this.review = review;
-        this.publishedAt = publishedAt;
-        this.reviewedAt = reviewedAt;
-        this.userId = userId;
+    public Review(Long id, String title, String genre, int stars, String review, Date publishedAt, Date reviewedAt, UUID userId) throws ValidationError {
+        this.setId(id);
+        this.setTitle(title);
+        this.setGenre(genre);
+        this.setStars(stars);
+        this.setReview(review);
+        this.setPublishedAt(publishedAt);
+        this.setReviewedAt(reviewedAt);
+        this.setUser(user);
     }
 
     public Long getId() {
@@ -98,14 +100,42 @@ public class Review {
         this.reviewedAt = reviewedAt;
     }
 
-    public UUID getUserId() {
-        return userId;
+    public UserSchema getUser() {
+        return user;
     }
 
-    public void setUserId(UUID userId) throws ValidationError {
-        if(userId == null) {
-            throw new ValidationError("The userId cannot be blank or empty");
+    public void setUser(UserSchema user) throws ValidationError {
+        if(user == null) {
+            throw new ValidationError("The user cannot be null");
         }
-        this.userId = userId;
+        this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Review review1)) return false;
+
+        if (stars != review1.stars) return false;
+        if (!Objects.equals(id, review1.id)) return false;
+        if (!Objects.equals(title, review1.title)) return false;
+        if (!Objects.equals(genre, review1.genre)) return false;
+        if (!Objects.equals(review, review1.review)) return false;
+        if (!Objects.equals(publishedAt, review1.publishedAt)) return false;
+        if (!Objects.equals(reviewedAt, review1.reviewedAt)) return false;
+        return Objects.equals(user, review1.user);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (genre != null ? genre.hashCode() : 0);
+        result = 31 * result + stars;
+        result = 31 * result + (review != null ? review.hashCode() : 0);
+        result = 31 * result + (publishedAt != null ? publishedAt.hashCode() : 0);
+        result = 31 * result + (reviewedAt != null ? reviewedAt.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        return result;
     }
 }
