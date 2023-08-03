@@ -1,6 +1,6 @@
 package com.Reviewz.infra.dataprovider.database.review;
 
-import com.Reviewz.core.review.model.contract.ReviewGateway;
+import com.Reviewz.core.review.contract.ReviewGateway;
 import com.Reviewz.infra.dataprovider.schema.review.ReviewSchema;
 import org.springframework.stereotype.Component;
 

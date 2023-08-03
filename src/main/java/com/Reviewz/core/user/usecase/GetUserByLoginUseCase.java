@@ -3,11 +3,9 @@ package com.Reviewz.core.user.usecase;
 import org.springframework.stereotype.Service;
 
 import com.Reviewz.core.user.contract.UserGateway;
-import com.Reviewz.core.user.exception.ValidationError;
+import com.Reviewz.core.user.genericException.ValidationError;
 import com.Reviewz.core.user.model.User;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
-
-import jakarta.transaction.Transactional;
 
 @Service
 public class GetUserByLoginUseCase {

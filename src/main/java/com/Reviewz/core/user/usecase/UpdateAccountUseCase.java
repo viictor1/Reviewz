@@ -2,7 +2,7 @@ package com.Reviewz.core.user.usecase;
 
 import com.Reviewz.core.authentication.usecase.TokenService;
 import com.Reviewz.core.user.contract.UserGateway;
-import com.Reviewz.core.user.exception.ValidationError;
+import com.Reviewz.core.user.genericException.ValidationError;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.Reviewz.core.user.exception.ValidationError;
+import com.Reviewz.core.user.genericException.ValidationError;
 
 public class UserTest {
 

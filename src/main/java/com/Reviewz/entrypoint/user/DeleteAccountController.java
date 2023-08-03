@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import com.Reviewz.core.user.exception.ValidationError;
+import com.Reviewz.core.user.genericException.ValidationError;
 import com.Reviewz.core.user.usecase.DeleteAccountUseCase;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;

@@ -1,4 +1,4 @@
-package com.Reviewz.core.user.exception;
+package com.Reviewz.core.user.genericException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

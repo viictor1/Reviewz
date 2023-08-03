@@ -2,7 +2,7 @@ package com.Reviewz.core.user.model;
 
 import java.util.UUID;
 
-import com.Reviewz.core.user.exception.ValidationError;
+import com.Reviewz.core.user.genericException.ValidationError;
 import com.Reviewz.infra.dataprovider.schema.user.UserRole;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 
