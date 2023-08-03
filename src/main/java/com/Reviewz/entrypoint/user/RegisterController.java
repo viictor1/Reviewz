@@ -33,7 +33,7 @@ public class RegisterController {
 			description = "Registers an account by passing name, login and password",
 			tags = {"User"},
 			responses = {
-					@ApiResponse(description = "Success", responseCode = "200", content = @Content),
+					@ApiResponse(description = "Success", responseCode = "204", content = @Content),
 					@ApiResponse(description = "Login already being used", responseCode = "409", content = @Content),
 					@ApiResponse(description = "Missing value", responseCode = "422", content = @Content)
 			}

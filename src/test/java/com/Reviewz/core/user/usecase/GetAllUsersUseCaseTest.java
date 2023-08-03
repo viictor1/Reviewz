@@ -1,8 +1,6 @@
 package com.Reviewz.core.user.usecase;
 
-import com.Reviewz.core.authentication.usecase.TokenService;
 import com.Reviewz.core.user.contract.UserGateway;
-import com.Reviewz.infra.dataprovider.database.UserRepository;
 import com.Reviewz.infra.dataprovider.schema.user.UserRole;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 import com.Reviewz.mocks.MockUser;
@@ -14,7 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 

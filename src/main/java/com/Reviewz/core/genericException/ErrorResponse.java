@@ -1,4 +1,4 @@
-package com.Reviewz.core.user.exception;
+package com.Reviewz.core.genericException;
 
 public class ErrorResponse {
 

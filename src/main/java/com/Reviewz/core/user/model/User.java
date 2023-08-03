@@ -1,8 +1,11 @@
 package com.Reviewz.core.user.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
-import com.Reviewz.core.user.exception.ValidationError;
+import com.Reviewz.core.genericException.ValidationError;
+import com.Reviewz.infra.dataprovider.schema.review.ReviewSchema;
 import com.Reviewz.infra.dataprovider.schema.user.UserRole;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 
@@ -13,6 +16,8 @@ public class User {
 	private String login;
 	private String password;
 	private UserRole role;
+
+	private Set<ReviewSchema> reviews = new HashSet<>();
 	
 	public User(UUID id, String name, String login, String password, UserRole role) {
 		super();
@@ -59,7 +64,7 @@ public class User {
 
 	public void setLogin(String login) throws Exception {
 		if(login == null || login.isEmpty()) {
-			throw new ValidationError("The email cannot be blank or empty");
+			throw new ValidationError("The login cannot be blank or empty");
 		}
 		this.login = login;
 	}
@@ -90,4 +95,12 @@ public class User {
     public void setId(UUID uuid) {
 		this.id = uuid;
     }
+
+	public Set<ReviewSchema> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(Set<ReviewSchema> reviews) {
+		this.reviews = reviews;
+	}
 }

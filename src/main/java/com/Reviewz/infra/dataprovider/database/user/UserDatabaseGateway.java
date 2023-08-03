@@ -1,4 +1,4 @@
-package com.Reviewz.infra.dataprovider.database;
+package com.Reviewz.infra.dataprovider.database.user;
 
 import java.util.List;
 import java.util.Optional;

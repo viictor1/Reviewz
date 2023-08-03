@@ -1,22 +1,14 @@
 package com.Reviewz.infra.dataprovider.schema.user;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
+import com.Reviewz.infra.dataprovider.schema.review.ReviewSchema;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.Reviewz.core.user.model.User;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 
 @Table(name = "users")
@@ -40,6 +32,9 @@ public class UserSchema implements UserDetails{
 	
 	@Column(nullable = false)
 	private UserRole role;
+
+	@OneToMany(mappedBy = "user")
+	private Set<ReviewSchema> reviews = new HashSet<>();
 
 	public UserSchema(UUID id, String name, String login, String password, UserRole role) {
 		super();
@@ -88,6 +83,14 @@ public class UserSchema implements UserDetails{
 	
 	public UserRole getRole() {
 		return role;
+	}
+
+	public Set<ReviewSchema> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(Set<ReviewSchema> reviews) {
+		this.reviews = reviews;
 	}
 
 	public void setId(UUID id) {
@@ -147,7 +150,8 @@ public class UserSchema implements UserDetails{
 		if (!Objects.equals(name, that.name)) return false;
 		if (!Objects.equals(login, that.login)) return false;
 		if (!Objects.equals(password, that.password)) return false;
-		return role == that.role;
+		if (role != that.role) return false;
+		return Objects.equals(reviews, that.reviews);
 	}
 
 	@Override
@@ -157,6 +161,7 @@ public class UserSchema implements UserDetails{
 		result = 31 * result + (login != null ? login.hashCode() : 0);
 		result = 31 * result + (password != null ? password.hashCode() : 0);
 		result = 31 * result + (role != null ? role.hashCode() : 0);
+		result = 31 * result + (reviews != null ? reviews.hashCode() : 0);
 		return result;
 	}
 }
