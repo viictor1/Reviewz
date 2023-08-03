@@ -3,8 +3,7 @@ package com.Reviewz.core.user.usecase;
 import com.Reviewz.core.authentication.usecase.TokenService;
 import com.Reviewz.core.user.contract.UserGateway;
 import com.Reviewz.core.user.exception.ValidationError;
-import com.Reviewz.infra.dataprovider.database.UserRepository;
-import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
+import com.Reviewz.infra.dataprovider.database.user.UserRepository;
 import com.Reviewz.mocks.MockUser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,8 +15,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
