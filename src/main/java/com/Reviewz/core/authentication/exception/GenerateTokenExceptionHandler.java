@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.Reviewz.core.user.genericException.ErrorResponse;
+import com.Reviewz.core.genericException.ErrorResponse;
 
 @ControllerAdvice
 public class GenerateTokenExceptionHandler {

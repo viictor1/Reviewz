@@ -1,14 +1,15 @@
 package com.Reviewz.core.review.usecase;
 
 import com.Reviewz.core.authentication.usecase.TokenService;
+import com.Reviewz.core.genericException.ValidationError;
 import com.Reviewz.core.review.contract.ReviewGateway;
 import com.Reviewz.core.review.model.Review;
 import com.Reviewz.core.user.contract.UserGateway;
-import com.Reviewz.core.user.genericException.ValidationError;
+import com.Reviewz.infra.dataprovider.schema.review.ReviewSchema;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Service
 public class CreateReviewUseCase {
@@ -23,8 +24,9 @@ public class CreateReviewUseCase {
         this.tokenService = tokenService;
     }
 
-    public void execute(Input input){
-
+    public void execute(Input input) throws ValidationError {
+        Review review = setReviewFromInput(input);
+        reviewGateway.create(new ReviewSchema(review));
     }
 
     public Review setReviewFromInput(Input input) throws ValidationError {
@@ -34,12 +36,13 @@ public class CreateReviewUseCase {
         review.setStars(input.stars);
         review.setReview(input.review);
         review.setPublishedAt(input.publishedAt);
+        review.setReviewedAt(new Date());
         review.setUser(getUserFromToken(input.userToken));
         return review;
     }
 
     public UserSchema getUserFromToken(String token) throws ValidationError {
-        String login = tokenService.validateToken(token);
+        String login = tokenService.validateToken(token.replace("Bearer ", ""));
 
         return userGateway.findOptionalByLogin(login)
                 .orElseThrow(() -> new ValidationError("User not found"));

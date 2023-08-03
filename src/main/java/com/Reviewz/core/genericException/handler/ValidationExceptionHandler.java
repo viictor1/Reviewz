@@ -1,7 +1,7 @@
-package com.Reviewz.core.user.genericException.handler;
+package com.Reviewz.core.genericException.handler;
 
-import com.Reviewz.core.user.genericException.ErrorResponse;
-import com.Reviewz.core.user.genericException.ValidationError;
+import com.Reviewz.core.genericException.ValidationError;
+import com.Reviewz.core.genericException.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

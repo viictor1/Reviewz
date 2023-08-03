@@ -1,5 +1,6 @@
 package com.Reviewz.infra.dataprovider.schema.review;
 
+import com.Reviewz.core.review.model.Review;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
@@ -7,13 +8,12 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Date;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "reviews")
 public class ReviewSchema {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -24,18 +24,32 @@ public class ReviewSchema {
 
     @Column(nullable = false)
     private int stars;
+
+    @Column
     private String review;
+
+    @Column(name = "published_at")
     private Date publishedAt;
 
-    @Column(nullable = false)
+    @Column(name = "reviewed_at", nullable = false)
     private Date reviewedAt;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "users_id", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UserSchema user;
 
     public ReviewSchema() {
+    }
+
+    public ReviewSchema(Review review) {
+        this.title = review.getTitle();
+        this.genre = review.getGenre();
+        this.review = review.getReview();
+        this.publishedAt = review.getPublishedAt();
+        this.reviewedAt = review.getReviewedAt();
+        this.stars = review.getStars();
+        this.user = review.getUser();
     }
 
     public Long getId() {

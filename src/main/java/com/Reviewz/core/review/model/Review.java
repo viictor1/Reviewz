@@ -1,6 +1,6 @@
 package com.Reviewz.core.review.model;
 
-import com.Reviewz.core.user.genericException.ValidationError;
+import com.Reviewz.core.genericException.ValidationError;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 
 import java.util.Date;
