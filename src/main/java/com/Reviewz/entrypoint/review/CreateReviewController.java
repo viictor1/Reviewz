@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +39,7 @@ public class CreateReviewController {
         createReviewUseCase.execute(
                 new CreateReviewUseCase.Input(
                         request.title,
+                        request.madeBy,
                         request.genre,
                         request.stars,
                         request.review,
@@ -48,6 +50,13 @@ public class CreateReviewController {
     }
 
     @Schema(hidden = true, name = "Create Review Request")
-    public record Request(String title, String genre, int stars, String review, Date publishedAt){}
+    public record Request(
+            @NotBlank String title,
+            @NotBlank String genre,
+            String madeBy,
+            @NotBlank int stars,
+            String review,
+            Date publishedAt
+    ){}
 
 }

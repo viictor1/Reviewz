@@ -19,6 +19,9 @@ public class ReviewSchema {
     @Column(nullable = false)
     private String title;
 
+    @Column(name = "made_by")
+    private String madeBy;
+
     @Column(nullable = false)
     private String genre;
 
@@ -44,6 +47,7 @@ public class ReviewSchema {
 
     public ReviewSchema(Review review) {
         this.title = review.getTitle();
+        this.madeBy = review.getMadeBy();
         this.genre = review.getGenre();
         this.review = review.getReview();
         this.publishedAt = review.getPublishedAt();
@@ -116,6 +120,14 @@ public class ReviewSchema {
         this.user = user;
     }
 
+    public String getMadeBy() {
+        return madeBy;
+    }
+
+    public void setMadeBy(String madeBy) {
+        this.madeBy = madeBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,6 +136,7 @@ public class ReviewSchema {
         if (stars != that.stars) return false;
         if (!Objects.equals(id, that.id)) return false;
         if (!Objects.equals(title, that.title)) return false;
+        if (!Objects.equals(madeBy, that.madeBy)) return false;
         if (!Objects.equals(genre, that.genre)) return false;
         if (!Objects.equals(review, that.review)) return false;
         if (!Objects.equals(publishedAt, that.publishedAt)) return false;
@@ -135,6 +148,7 @@ public class ReviewSchema {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (madeBy != null ? madeBy.hashCode() : 0);
         result = 31 * result + (genre != null ? genre.hashCode() : 0);
         result = 31 * result + stars;
         result = 31 * result + (review != null ? review.hashCode() : 0);

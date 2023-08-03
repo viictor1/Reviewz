@@ -32,6 +32,7 @@ public class CreateReviewUseCase {
     public Review setReviewFromInput(Input input) throws ValidationError {
         Review review = new Review();
         review.setTitle(input.title);
+        review.setMadeBy(input.madeBy);
         review.setGenre(input.genre);
         review.setStars(input.stars);
         review.setReview(input.review);
@@ -48,6 +49,6 @@ public class CreateReviewUseCase {
                 .orElseThrow(() -> new ValidationError("User not found"));
     }
 
-    public record Input(String title, String genre, int stars, String review, Date publishedAt, String userToken){}
+    public record Input(String title, String madeBy, String genre, int stars, String review, Date publishedAt, String userToken){}
 
 }

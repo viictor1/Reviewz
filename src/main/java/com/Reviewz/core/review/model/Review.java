@@ -11,6 +11,7 @@ public class Review {
 
     private Long id;
     private String title;
+    private String madeBy;
     private String genre;
     private int stars;
     private String review;
@@ -21,9 +22,10 @@ public class Review {
     public Review() {
     }
 
-    public Review(Long id, String title, String genre, int stars, String review, Date publishedAt, Date reviewedAt, UUID userId) throws ValidationError {
+    public Review(Long id, String title, String madeBy, String genre, int stars, String review, Date publishedAt, Date reviewedAt, UUID userId) throws ValidationError {
         this.setId(id);
         this.setTitle(title);
+        this.setMadeBy(madeBy);
         this.setGenre(genre);
         this.setStars(stars);
         this.setReview(review);
@@ -111,6 +113,14 @@ public class Review {
         this.user = user;
     }
 
+    public String getMadeBy() {
+        return madeBy;
+    }
+
+    public void setMadeBy(String madeBy) {
+        this.madeBy = madeBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -119,6 +129,7 @@ public class Review {
         if (stars != review1.stars) return false;
         if (!Objects.equals(id, review1.id)) return false;
         if (!Objects.equals(title, review1.title)) return false;
+        if (!Objects.equals(madeBy, review1.madeBy)) return false;
         if (!Objects.equals(genre, review1.genre)) return false;
         if (!Objects.equals(review, review1.review)) return false;
         if (!Objects.equals(publishedAt, review1.publishedAt)) return false;
@@ -130,6 +141,7 @@ public class Review {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (madeBy != null ? madeBy.hashCode() : 0);
         result = 31 * result + (genre != null ? genre.hashCode() : 0);
         result = 31 * result + stars;
         result = 31 * result + (review != null ? review.hashCode() : 0);
