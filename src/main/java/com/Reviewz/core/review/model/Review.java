@@ -22,6 +22,7 @@ public class Review {
     public Review() {
     }
 
+
     public Review(Long id, String title, String madeBy, String genre, int stars, String review, Date publishedAt, Date reviewedAt, UUID userId) throws ValidationError {
         this.setId(id);
         this.setTitle(title);
@@ -112,7 +113,7 @@ public class Review {
         }
         this.user = user;
     }
-
+  
     public String getMadeBy() {
         return madeBy;
     }
@@ -120,7 +121,7 @@ public class Review {
     public void setMadeBy(String madeBy) {
         this.madeBy = madeBy;
     }
-
+  
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

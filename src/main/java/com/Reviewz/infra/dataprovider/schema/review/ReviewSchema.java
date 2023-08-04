@@ -8,10 +8,13 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Date;
 import java.util.Objects;
+import java.util.UUID;
+
 
 @Entity
 @Table(name = "reviews")
 public class ReviewSchema {
+  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
