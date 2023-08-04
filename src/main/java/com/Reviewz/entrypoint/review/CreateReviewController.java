@@ -24,7 +24,7 @@ public class CreateReviewController {
         this.createReviewUseCase = createReviewUseCase;
     }
 
-    @PostMapping("/create")
+    @PostMapping
     @SecurityRequirement(name = "bearerAuth")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Adds a review",
@@ -40,7 +40,7 @@ public class CreateReviewController {
                 new CreateReviewUseCase.Input(
                         request.title,
                         request.madeBy,
-                        request.genre,
+                        request.category,
                         request.stars,
                         request.review,
                         request.publishedAt,
@@ -52,7 +52,7 @@ public class CreateReviewController {
     @Schema(hidden = true, name = "Create Review Request")
     public record Request(
             @NotBlank String title,
-            @NotBlank String genre,
+            @NotBlank String category,
             String madeBy,
             @NotBlank int stars,
             String review,

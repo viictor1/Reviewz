@@ -1,8 +1,13 @@
 package com.Reviewz.infra.dataprovider.database.review;
 
 import com.Reviewz.core.review.contract.ReviewGateway;
+import com.Reviewz.core.review.model.Review;
 import com.Reviewz.infra.dataprovider.schema.review.ReviewSchema;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Component
 public class ReviewDatabaseGateway implements ReviewGateway {
@@ -16,5 +21,17 @@ public class ReviewDatabaseGateway implements ReviewGateway {
     @Override
     public void create(ReviewSchema reviewSchema) {
         reviewRepository.save(reviewSchema);
+    }
+
+    @Override
+    public List<Review> getReviewsByUserId(UUID userId) {
+        List<ReviewSchema> schemaList = reviewRepository.getReviewsByUserId(userId);
+        List<Review> reviewList = new ArrayList<>();
+
+        for (ReviewSchema schema: schemaList) {
+            reviewList.add(new Review(schema));
+        }
+
+        return reviewList;
     }
 }

@@ -1,7 +1,7 @@
 create table reviews (
     id SERIAL PRIMARY KEY ,
     title VARCHAR(255) NOT NULL,
-    genre VARCHAR(255) NOT NULL,
+    category VARCHAR(255) NOT NULL,
     made_by VARCHAR(255),
     stars INT NOT NULL,
     review VARCHAR(255),
