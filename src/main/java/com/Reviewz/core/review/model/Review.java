@@ -12,7 +12,7 @@ public class Review {
     private Long id;
     private String title;
     private String madeBy;
-    private String genre;
+    private String category;
     private int stars;
     private String review;
     private Date publishedAt;
@@ -23,11 +23,11 @@ public class Review {
     }
 
 
-    public Review(Long id, String title, String madeBy, String genre, int stars, String review, Date publishedAt, Date reviewedAt, UUID userId) throws ValidationError {
+    public Review(Long id, String title, String madeBy, String category, int stars, String review, Date publishedAt, Date reviewedAt, UUID userId) throws ValidationError {
         this.setId(id);
         this.setTitle(title);
         this.setMadeBy(madeBy);
-        this.setGenre(genre);
+        this.setCategory(category);
         this.setStars(stars);
         this.setReview(review);
         this.setPublishedAt(publishedAt);
@@ -54,15 +54,15 @@ public class Review {
         this.title = title;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getCategory() {
+        return category;
     }
 
-    public void setGenre(String genre) throws ValidationError {
-        if(genre == null || genre.isEmpty()) {
-            throw new ValidationError("The genre cannot be blank or empty");
+    public void setCategory(String category) throws ValidationError {
+        if(category == null || category.isEmpty()) {
+            throw new ValidationError("The category cannot be blank or empty");
         }
-        this.genre = genre;
+        this.category = category;
     }
 
     public int getStars() {
@@ -131,7 +131,7 @@ public class Review {
         if (!Objects.equals(id, review1.id)) return false;
         if (!Objects.equals(title, review1.title)) return false;
         if (!Objects.equals(madeBy, review1.madeBy)) return false;
-        if (!Objects.equals(genre, review1.genre)) return false;
+        if (!Objects.equals(category, review1.category)) return false;
         if (!Objects.equals(review, review1.review)) return false;
         if (!Objects.equals(publishedAt, review1.publishedAt)) return false;
         if (!Objects.equals(reviewedAt, review1.reviewedAt)) return false;
@@ -143,7 +143,7 @@ public class Review {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (madeBy != null ? madeBy.hashCode() : 0);
-        result = 31 * result + (genre != null ? genre.hashCode() : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
         result = 31 * result + stars;
         result = 31 * result + (review != null ? review.hashCode() : 0);
         result = 31 * result + (publishedAt != null ? publishedAt.hashCode() : 0);
