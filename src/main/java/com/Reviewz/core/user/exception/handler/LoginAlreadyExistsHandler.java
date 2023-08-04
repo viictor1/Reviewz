@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.Reviewz.core.user.exception.LoginAlreadyExistsException;
-import com.Reviewz.core.user.exception.ErrorResponse;
+import com.Reviewz.core.genericException.ErrorResponse;
 
 @ControllerAdvice
 public class LoginAlreadyExistsHandler {

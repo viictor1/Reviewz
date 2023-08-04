@@ -2,8 +2,8 @@ package com.Reviewz.core.user.usecase;
 
 import com.Reviewz.core.authentication.usecase.TokenService;
 import com.Reviewz.core.user.contract.UserGateway;
-import com.Reviewz.core.user.exception.ValidationError;
-import com.Reviewz.infra.dataprovider.database.UserRepository;
+import com.Reviewz.core.genericException.ValidationError;
+import com.Reviewz.infra.dataprovider.database.user.UserRepository;
 import com.Reviewz.mocks.MockUser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

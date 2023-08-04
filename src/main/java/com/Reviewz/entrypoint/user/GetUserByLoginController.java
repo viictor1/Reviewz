@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import com.Reviewz.core.user.exception.ValidationError;
+import com.Reviewz.core.genericException.ValidationError;
 import com.Reviewz.core.user.model.User;
 import com.Reviewz.core.user.usecase.GetUserByLoginUseCase;
 import com.Reviewz.infra.dataprovider.schema.user.UserRole;

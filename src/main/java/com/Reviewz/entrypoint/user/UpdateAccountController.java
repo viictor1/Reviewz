@@ -1,6 +1,6 @@
 package com.Reviewz.entrypoint.user;
 
-import com.Reviewz.core.user.exception.ValidationError;
+import com.Reviewz.core.genericException.ValidationError;
 import com.Reviewz.core.user.usecase.UpdateAccountUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
