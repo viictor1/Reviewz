@@ -33,7 +33,7 @@ public class GetReviewsUseCase {
     }
 
     private String getLoginByToken(String token){
-        return tokenService.validateToken(token);
+        return tokenService.validateToken(token.replace("Bearer ", ""));
     }
 
     private UUID getUserIdByLogin(String login) throws ValidationError {

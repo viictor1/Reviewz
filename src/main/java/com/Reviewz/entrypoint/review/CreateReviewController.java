@@ -24,7 +24,7 @@ public class CreateReviewController {
         this.createReviewUseCase = createReviewUseCase;
     }
 
-    @PostMapping("/create")
+    @PostMapping
     @SecurityRequirement(name = "bearerAuth")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Adds a review",
