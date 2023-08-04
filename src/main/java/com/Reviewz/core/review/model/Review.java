@@ -1,6 +1,7 @@
 package com.Reviewz.core.review.model;
 
 import com.Reviewz.core.genericException.ValidationError;
+import com.Reviewz.infra.dataprovider.schema.review.ReviewSchema;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 
 import java.util.Date;
@@ -20,6 +21,18 @@ public class Review {
     private UserSchema user;
 
     public Review() {
+    }
+
+    public Review(ReviewSchema review) {
+        this.id = review.getId();
+        this.title = review.getTitle();
+        this.madeBy = review.getMadeBy();
+        this.category = review.getCategory();
+        this.review = review.getReview();
+        this.publishedAt = review.getPublishedAt();
+        this.reviewedAt = review.getReviewedAt();
+        this.stars = review.getStars();
+        this.user = review.getUser();
     }
 
 
