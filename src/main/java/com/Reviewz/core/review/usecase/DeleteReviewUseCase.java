@@ -18,7 +18,7 @@ public class DeleteReviewUseCase {
     }
 
     public void execute(Input input) throws AccessDeniedException, ValidationError {
-        ReviewSchema review = new ReviewSchema(reviewGateway.getReviewById(input.reviewId));
+        ReviewSchema review = reviewGateway.getReviewById(input.reviewId);
         var userId = getIdByToken(input.token);
 
         if(review.getUser().getId() != userId){

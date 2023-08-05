@@ -3,6 +3,7 @@ package com.Reviewz.core.review.usecase;
 import com.Reviewz.core.genericException.ValidationError;
 import com.Reviewz.core.review.contract.ReviewGateway;
 import com.Reviewz.core.review.model.Review;
+import com.Reviewz.infra.dataprovider.schema.review.ReviewSchema;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.AccessDeniedException;
@@ -20,7 +21,7 @@ public class GetReviewByIdUseCase {
     }
 
     public Review execute(Input input) throws AccessDeniedException, ValidationError {
-        var review = reviewGateway.getReviewById(input.reviewId);
+        var review = new Review(reviewGateway.getReviewById(input.reviewId));
         var userId = getIdByToken(input.token);
 
         if(review.getUser().getId() != userId){
