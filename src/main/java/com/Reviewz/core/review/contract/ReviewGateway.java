@@ -12,4 +12,6 @@ public interface ReviewGateway {
     List<Review> getReviewsByUserId(UUID userId);
 
     Review getReviewById(Long id);
+
+    void deleteReview(ReviewSchema reviewSchema);
 }
