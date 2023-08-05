@@ -50,11 +50,9 @@ public class GetReviewByIdController {
                     review.getPublishedAt(),
                     review.getReviewedAt()
             );
-        }
-
     }
 
-    record Response(
+    private record Response(
             Long id,
             String title,
             String madeBy,
@@ -64,4 +62,6 @@ public class GetReviewByIdController {
             Date publishedAt,
             Date reviewedAt
     ) {}
+
+}
 
