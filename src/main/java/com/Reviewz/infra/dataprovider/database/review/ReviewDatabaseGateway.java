@@ -34,4 +34,10 @@ public class ReviewDatabaseGateway implements ReviewGateway {
 
         return reviewList;
     }
+
+    @Override
+    public Review getReviewById(Long id){
+        ReviewSchema schema = reviewRepository.getReferenceById(id);
+        return new Review(schema);
+    }
 }

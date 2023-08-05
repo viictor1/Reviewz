@@ -1,24 +1,22 @@
 package com.Reviewz.core.user.usecase;
 
-import com.Reviewz.core.authentication.usecase.TokenService;
-import com.Reviewz.core.user.contract.UserGateway;
 import com.Reviewz.core.genericException.ValidationError;
+import com.Reviewz.core.user.contract.UserGateway;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import static com.Reviewz.core.user.utils.UserUtils.retrieveUserFromToken;
 
 @Service
 public class DeleteAccountUseCase {
 	
 	private UserGateway userGateway;
 	
-	private TokenService tokenService;
-	
 	private PasswordEncoder passwordEncoder;
 	
-	public DeleteAccountUseCase(UserGateway userGateway, TokenService tokenService, PasswordEncoder passwordEncoder) {
+	public DeleteAccountUseCase(UserGateway userGateway, PasswordEncoder passwordEncoder) {
 		this.userGateway = userGateway;
-		this.tokenService = tokenService;
 		this.passwordEncoder = passwordEncoder;
 	}
 	
@@ -33,14 +31,7 @@ public class DeleteAccountUseCase {
 		}
 		
 	}
-	
-	private UserSchema retrieveUserFromToken(String token) throws ValidationError {
-		String login = tokenService.validateToken(token);
-		
-		return userGateway.findOptionalByLogin(login)
-				.orElseThrow(() -> new ValidationError("User not found"));
-	}
-	
+
 	private boolean typedPasswordEqualsActualPassword(String password, String userPassword) {
 		return passwordEncoder.matches(password, userPassword);
 	}
