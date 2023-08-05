@@ -10,4 +10,6 @@ public interface ReviewGateway {
     void create (ReviewSchema reviewSchema);
 
     List<Review> getReviewsByUserId(UUID userId);
+
+    Review getReviewById(Long id);
 }
