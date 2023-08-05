@@ -36,8 +36,13 @@ public class ReviewDatabaseGateway implements ReviewGateway {
     }
 
     @Override
-    public Review getReviewById(Long id){
+    public ReviewSchema getReviewById(Long id){
         ReviewSchema schema = reviewRepository.getReferenceById(id);
-        return new Review(schema);
+        return schema;
+    }
+
+    @Override
+    public void deleteReview(ReviewSchema reviewSchema){
+        reviewRepository.delete(reviewSchema);
     }
 }
