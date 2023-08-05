@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
-import static com.Reviewz.core.user.utils.UserUtils.getLoginByToken;
-import static com.Reviewz.core.user.utils.UserUtils.getUserIdByLogin;
+import static com.Reviewz.core.user.utils.UserUtils.getIdByToken;
 
 @Service
 public class GetReviewsUseCase {
@@ -20,8 +19,7 @@ public class GetReviewsUseCase {
     }
 
     public List<Review> getReviewsByToken(String token) throws ValidationError {
-        String login = getLoginByToken(token);
-        UUID userId = getUserIdByLogin(login);
+        UUID userId = getIdByToken(token);
 
         return reviewGateway.getReviewsByUserId(userId);
     }

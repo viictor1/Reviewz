@@ -4,9 +4,11 @@ import com.Reviewz.core.authentication.usecase.TokenService;
 import com.Reviewz.core.genericException.ValidationError;
 import com.Reviewz.core.user.contract.UserGateway;
 import com.Reviewz.infra.dataprovider.schema.user.UserSchema;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+@Component
 public class UserUtils {
 
     private static TokenService tokenService;
@@ -36,5 +38,11 @@ public class UserUtils {
     public static UserSchema getUserByLogin(String login) throws ValidationError {
         return userGateway.findOptionalByLogin(login)
                 .orElseThrow(() -> new ValidationError("User not found"));
+    }
+
+    public static UUID getIdByToken(String token) throws ValidationError {
+        String login = retrieveUserFromToken(token).getLogin();
+        var user = getUserByLogin(login);
+        return user.getId();
     }
 }
