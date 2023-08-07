@@ -19,7 +19,7 @@ public class ReviewDatabaseGateway implements ReviewGateway {
     }
 
     @Override
-    public void create(ReviewSchema reviewSchema) {
+    public void save(ReviewSchema reviewSchema) {
         reviewRepository.save(reviewSchema);
     }
 
