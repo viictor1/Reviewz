@@ -37,7 +37,7 @@ public class GetReviewByIdController {
                     @ApiResponse(description = "Access denied", responseCode = "403", content = @Content),
             }
     )
-    public Response getAllUsers(@RequestHeader("Authorization") String token, @PathVariable("id") Long id) throws ValidationError, AccessDeniedException {
+    public Response getUserById(@RequestHeader("Authorization") String token, @PathVariable("id") Long id) throws ValidationError, AccessDeniedException {
         Review review = getReviewByIdUseCase.execute(new GetReviewByIdUseCase.Input(id, token));
 
         return new Response(

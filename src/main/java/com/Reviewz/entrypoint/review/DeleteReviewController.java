@@ -37,7 +37,7 @@ public class DeleteReviewController {
                     @ApiResponse(description = "Access denied", responseCode = "403", content = @Content),
             }
     )
-    public void getAllUsers(@RequestHeader("Authorization") String token, @PathVariable("id") Long id) throws ValidationError, AccessDeniedException {
+    public void deleteUser(@RequestHeader("Authorization") String token, @PathVariable("id") Long id) throws ValidationError, AccessDeniedException {
         deleteReviewUseCase.execute(new DeleteReviewUseCase.Input(id, token));
     }
 }
