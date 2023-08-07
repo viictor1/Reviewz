@@ -48,6 +48,7 @@ public class ReviewSchema {
     }
 
     public ReviewSchema(Review review) {
+        this.id = review.getId();
         this.title = review.getTitle();
         this.madeBy = review.getMadeBy();
         this.category = review.getCategory();

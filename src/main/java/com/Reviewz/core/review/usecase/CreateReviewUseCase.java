@@ -21,7 +21,7 @@ public class CreateReviewUseCase {
 
     public void execute(Input input) throws ValidationError {
         Review review = setReviewFromInput(input);
-        reviewGateway.create(new ReviewSchema(review));
+        reviewGateway.save(new ReviewSchema(review));
     }
 
     public Review setReviewFromInput(Input input) throws ValidationError {

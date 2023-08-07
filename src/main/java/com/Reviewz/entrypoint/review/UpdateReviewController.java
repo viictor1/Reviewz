@@ -1,6 +1,6 @@
 package com.Reviewz.entrypoint.review;
 
-import com.Reviewz.core.review.usecase.CreateReviewUseCase;
+import com.Reviewz.core.review.usecase.UpdateReviewUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,19 +16,19 @@ import java.sql.Date;
 @RestController
 @RequestMapping("/review")
 @Tag(name = "Review", description = "Endpoints for Managing Reviews")
-public class CreateReviewController {
+public class UpdateReviewController {
 
-    private CreateReviewUseCase createReviewUseCase;
+    private UpdateReviewUseCase updateReviewUseCase;
 
-    public CreateReviewController(CreateReviewUseCase createReviewUseCase) {
-        this.createReviewUseCase = createReviewUseCase;
+    public UpdateReviewController(UpdateReviewUseCase updateReviewUseCase) {
+        this.updateReviewUseCase = updateReviewUseCase;
     }
 
-    @PostMapping
+    @PutMapping
     @SecurityRequirement(name = "bearerAuth")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @Operation(summary = "Adds a review",
-            description = "Add a review",
+    @Operation(summary = "Updates a review",
+            description = "Updates a review",
             tags = {"Review"},
             responses = {
                     @ApiResponse(description = "Success", responseCode = "204", content = @Content),
@@ -36,9 +36,10 @@ public class CreateReviewController {
                     @ApiResponse(description = "Access denied", responseCode = "403", content = @Content)
             }
     )
-    public void createUser(@RequestHeader("Authorization") String token, @RequestBody Request request) throws Exception {
-        createReviewUseCase.execute(
-                new CreateReviewUseCase.Input(
+    public void updateUser(@RequestHeader("Authorization") String token, @RequestBody Request request) throws Exception {
+        updateReviewUseCase.execute(
+                new UpdateReviewUseCase.Input(
+                        request.id,
                         request.title,
                         request.madeBy,
                         request.category,
@@ -50,8 +51,9 @@ public class CreateReviewController {
         );
     }
 
-    @Schema(hidden = true, name = "Create Review Request")
+    @Schema(hidden = true, name = "Update Review Request")
     public record Request(
+            @NotBlank Long id,
             @NotBlank String title,
             @NotBlank String category,
             String madeBy,
@@ -59,5 +61,4 @@ public class CreateReviewController {
             String review,
             Date publishedAt
     ){}
-
 }

@@ -29,8 +29,8 @@ public class GetReviewsController {
     @GetMapping
     @SecurityRequirement(name = "bearerAuth")
     @ResponseStatus(value = HttpStatus.OK)
-    @Operation(summary = "Gets all of the authenticated users reviews",
-            description = "Gets all of the authenticated users reviews",
+    @Operation(summary = "Gets all of the authenticated user's reviews",
+            description = "Gets all of the authenticated user's reviews",
             tags = {"Review"},
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200", content = @Content),
