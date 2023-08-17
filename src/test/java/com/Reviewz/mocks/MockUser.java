@@ -30,10 +30,6 @@ public class MockUser {
         return user;
     }
 
-    public UserSchema mockEntity() {
-        return mockEntity(0);
-    }
-
     public User mockDto() throws Exception {
         return mockDto(0);
     }

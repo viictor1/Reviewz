@@ -37,7 +37,7 @@ class CreateUserUseCaseTest {
 
     @Test
     void shouldReturnLoginException() throws Exception {
-        Optional<UserSchema> user = Optional.of(input.mockEntity());
+        Optional<UserSchema> user = Optional.of(input.mockEntity(1));
 
         when(userGateway.findOptionalByLogin("test")).thenReturn(user);
 

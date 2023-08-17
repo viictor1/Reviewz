@@ -1,5 +1,8 @@
 ## Reviewz
 
+A ideia do projeto é você criar uma conta para guardar as suaus opiniões sobre as obras que você consome, como músicas, filmes, séries, etc.
+
+
 ### Projeto para aprender mais sobre alguns padrões e tecnologias como:
   - Clean Architecture
   - Clean Code
@@ -27,6 +30,22 @@
     - É possível alterar name, oldPassword, newPassword, sendo que o único obrigatório é o oldPassword, para fazer a validação.
     - Se não passar name ou newPassword será mantido os antigos.
     - Exceção caso a oldPassword não seja a senha verdadeira.
+   
+  - Criação de Review
+    - A review possui, titulo, categoria, quem fez, estrelas, a review em si, data de publicação da obra, data review e é necessariamente vinculado a um usuário.
+    - Get All Reviews:
+      - Mostrará todas as reviews do usuário autenticado.
+      - Exceção caso o usuário não esteja autenticado.
+    - Get Review By id
+      - Exceção caso usuário não esteja autenticado.
+      - Exceção ao tentar acessar review de outro usuário.
+    - Delete Review
+      - Exceção caso usuário não esteja autenticado.
+      - Exceção ao tentar deletar review de outro usuário.
+    - Update Review
+      - Exceção caso usuário não esteja autenticado.
+      - Exceção ao tentar atualizar review de outro usuário.
+      - Caso alguma informalçao não for passada, será mantida a antiga.
 
 ### Tecnologias utilizadas
   - Java 17
