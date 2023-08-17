@@ -8,7 +8,6 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Date;
 import java.util.Objects;
-import java.util.UUID;
 
 
 @Entity
@@ -26,7 +25,7 @@ public class ReviewSchema {
     private String madeBy;
 
     @Column(nullable = false)
-    private String genre;
+    private String category;
 
     @Column(nullable = false)
     private int stars;
@@ -49,9 +48,10 @@ public class ReviewSchema {
     }
 
     public ReviewSchema(Review review) {
+        this.id = review.getId();
         this.title = review.getTitle();
         this.madeBy = review.getMadeBy();
-        this.genre = review.getGenre();
+        this.category = review.getCategory();
         this.review = review.getReview();
         this.publishedAt = review.getPublishedAt();
         this.reviewedAt = review.getReviewedAt();
@@ -75,12 +75,12 @@ public class ReviewSchema {
         this.title = title;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getCategory() {
+        return category;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getStars() {
@@ -140,7 +140,7 @@ public class ReviewSchema {
         if (!Objects.equals(id, that.id)) return false;
         if (!Objects.equals(title, that.title)) return false;
         if (!Objects.equals(madeBy, that.madeBy)) return false;
-        if (!Objects.equals(genre, that.genre)) return false;
+        if (!Objects.equals(category, that.category)) return false;
         if (!Objects.equals(review, that.review)) return false;
         if (!Objects.equals(publishedAt, that.publishedAt)) return false;
         if (!Objects.equals(reviewedAt, that.reviewedAt)) return false;
@@ -152,7 +152,7 @@ public class ReviewSchema {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (madeBy != null ? madeBy.hashCode() : 0);
-        result = 31 * result + (genre != null ? genre.hashCode() : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
         result = 31 * result + stars;
         result = 31 * result + (review != null ? review.hashCode() : 0);
         result = 31 * result + (publishedAt != null ? publishedAt.hashCode() : 0);
