@@ -55,3 +55,10 @@ A ideia do projeto é você criar uma conta para guardar as suaus opiniões sobr
   - Flyway
   - JUnit 5
   - Swagger 2.1.0
+  - Docker
+
+### Como executar
+1. Clone ou instale o repositório
+2. ```./mvnw clean package -DskipTests ``` para instalar o .jar do projeto
+3. ```docker-compose up -d``` para rodar o projeto e o banco de dados
+4. ```docker ps``` para verificar se o projeto e o banco estão rodando corretamente
