@@ -23,3 +23,8 @@ services:
       - POSTGRES_USER=reviewz
       - POSTGRES_PASSWORD=reviewz123
       - POSTGRES_DB=reviewzdb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
